@@ -13,17 +13,17 @@ import java.util.Objects;
  */
 public class Flight {
 
-    private int id;
+    private long id;
     private String departing_aita;
     private String arrival_aita;
     private String departing_hour;
     private int duration;
     private double price;
-    private int id_pilot;
-    private int id_copilot;
-    private int id_staff1;
-    private int id_staff2;
-    private int id_staff3;
+    private long id_pilot;
+    private long id_copilot;
+    private long id_staff1;
+    private long id_staff2;
+    private long id_staff3;
     private boolean planned;
     
     public Flight() {
@@ -41,7 +41,7 @@ public class Flight {
         this.planned = false;
     }
     
-    public Flight(int id, String departing_aita, String arrival_aita, String departing_hour, int duration, double price, int id_pilot, int id_copilot, int id_staff1, int id_staff2, int id_staff3, boolean planned) {
+    public Flight(long id, String departing_aita, String arrival_aita, String departing_hour, int duration, double price, long id_pilot, long id_copilot, long id_staff1, long id_staff2, long id_staff3, boolean planned) {
         this.id = id;
         this.departing_aita = departing_aita;
         this.arrival_aita = arrival_aita;
@@ -56,7 +56,7 @@ public class Flight {
         this.planned = planned;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -80,23 +80,23 @@ public class Flight {
         return price;
     }
 
-    public int getId_pilot() {
+    public long getId_pilot() {
         return id_pilot;
     }
 
-    public int getId_copilot() {
+    public long getId_copilot() {
         return id_copilot;
     }
 
-    public int getId_staff1() {
+    public long getId_staff1() {
         return id_staff1;
     }
 
-    public int getId_staff2() {
+    public long getId_staff2() {
         return id_staff2;
     }
 
-    public int getId_staff3() {
+    public long getId_staff3() {
         return id_staff3;
     }
 
@@ -104,7 +104,7 @@ public class Flight {
         return planned;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
     public void setDeparting_aita(String departing_aita) {
@@ -127,23 +127,23 @@ public class Flight {
         this.price = price;
     }
 
-    public void setId_pilot(int id_pilot) {
+    public void setId_pilot(long id_pilot) {
         this.id_pilot = id_pilot;
     }
 
-    public void setId_copilot(int id_copilot) {
+    public void setId_copilot(long id_copilot) {
         this.id_copilot = id_copilot;
     }
 
-    public void setId_staff1(int id_staff1) {
+    public void setId_staff1(long id_staff1) {
         this.id_staff1 = id_staff1;
     }
 
-    public void setId_staff2(int id_staff2) {
+    public void setId_staff2(long id_staff2) {
         this.id_staff2 = id_staff2;
     }
 
-    public void setId_staff3(int id_staff3) {
+    public void setId_staff3(long id_staff3) {
         this.id_staff3 = id_staff3;
     }
 
@@ -158,21 +158,22 @@ public class Flight {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + this.id;
-        hash = 83 * hash + Objects.hashCode(this.departing_aita);
-        hash = 83 * hash + Objects.hashCode(this.arrival_aita);
-        hash = 83 * hash + Objects.hashCode(this.departing_hour);
-        hash = 83 * hash + this.duration;
-        hash = 83 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
-        hash = 83 * hash + this.id_pilot;
-        hash = 83 * hash + this.id_copilot;
-        hash = 83 * hash + this.id_staff1;
-        hash = 83 * hash + this.id_staff2;
-        hash = 83 * hash + this.id_staff3;
-        hash = 83 * hash + (this.planned ? 1 : 0);
+        int hash = 7;
+        hash = 43 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 43 * hash + Objects.hashCode(this.departing_aita);
+        hash = 43 * hash + Objects.hashCode(this.arrival_aita);
+        hash = 43 * hash + Objects.hashCode(this.departing_hour);
+        hash = 43 * hash + this.duration;
+        hash = 43 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
+        hash = 43 * hash + (int) (this.id_pilot ^ (this.id_pilot >>> 32));
+        hash = 43 * hash + (int) (this.id_copilot ^ (this.id_copilot >>> 32));
+        hash = 43 * hash + (int) (this.id_staff1 ^ (this.id_staff1 >>> 32));
+        hash = 43 * hash + (int) (this.id_staff2 ^ (this.id_staff2 >>> 32));
+        hash = 43 * hash + (int) (this.id_staff3 ^ (this.id_staff3 >>> 32));
+        hash = 43 * hash + (this.planned ? 1 : 0);
         return hash;
     }
+
 
     @Override
     public boolean equals(Object obj) {
