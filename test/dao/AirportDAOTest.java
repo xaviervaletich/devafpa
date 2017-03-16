@@ -47,7 +47,7 @@ public class AirportDAOTest {
     public void testCreate() {
         System.out.println("create");
         // create object airport
-        Airport airport = new Airport("TIT", "ma ville", "mon pays");
+        Airport airport = new Airport("ACE", "île de Lanzarote, Canaries", "Espagne");
         AirportDAO airportDAO = new AirportDAO();
         // find airport  create 
         Airport expResult = airportDAO.find(airport.getAita());
@@ -58,7 +58,7 @@ public class AirportDAOTest {
             Airport result = airportDAO.create(airport);   
             // find airport
             expResult = airportDAO.find(airport.getAita());
-            assertEquals(expResult, result);
+            assertEquals(expResult, result);          
         }
 
     }
@@ -66,17 +66,37 @@ public class AirportDAOTest {
     /**
      * Test of update method, of class AirportDAO.
      */
-//    @Test
-//    public void testUpdate() {
-//        System.out.println("update");
-//        Airport airport = null;
-//        AirportDAO instance = new AirportDAO();
-//        boolean expResult = false;
-//        boolean result = instance.update(airport);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testUpdate() {
+        System.out.println("update");
+        // create object airport
+        Airport airportInsert = new Airport("AEK", "Aseki", "Papouasie-Nouvelle-Guinée");
+        AirportDAO airportDAO = new AirportDAO();
+        // find airport create 
+        Airport findAirport = airportDAO.find(airportInsert.getAita());
+        
+        // if find airport is empty
+        if (findAirport.getAita().isEmpty()) {
+            // Insert airport in table
+            Airport resultAirport = airportDAO.create(airportInsert);  
+            // find airport
+            findAirport = airportDAO.find(resultAirport.getAita()); 
+            // modify airport
+            findAirport.setCity("update Aseki");
+            findAirport.setCountry("update Papouasie-Nouvelle-Guinée");         
+
+        }else{
+            // modify airport
+            findAirport.setCity("update Aseki");
+            findAirport.setCountry("update Papouasie-Nouvelle-Guinée");         
+            
+ 
+        }    
+        // update airport
+        boolean result = airportDAO.update(findAirport);   
+        boolean expResult = true;
+        assertEquals(expResult, result);
+    }
     /**
      * Test of delete method, of class AirportDAO.
      */
