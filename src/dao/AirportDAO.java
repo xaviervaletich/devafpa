@@ -42,8 +42,7 @@ public class AirportDAO extends DAO<Airport, String> {
                 int insert = pst.executeUpdate();
                 // if insert in table 
                 if (insert != 0) {
-                    airportCreate = airport;
-                    return airportCreate;
+                    airportCreate = airport;            
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -53,6 +52,7 @@ public class AirportDAO extends DAO<Airport, String> {
         } else {
             return airportCreate;
         }
+ 
         return airportCreate;
     }
 
@@ -127,12 +127,18 @@ public class AirportDAO extends DAO<Airport, String> {
         if (this.bddmanager.connect()) {
 
             try {
-                Statement st = this.bddmanager.getConnectionManager().createStatement();
+                Statement st = this.bddmanager
+                                .getConnectionManager()
+                                .createStatement();
                 String requete = "SELECT * FROM airports";
                 ResultSet rs = st.executeQuery(requete);
 
                 while (rs.next()) {
-                    Airport el = new Airport(rs.getString("aita"), rs.getString("city"), rs.getString("country"));
+                    Airport el = new Airport(
+                            rs.getString("aita"), 
+                            rs.getString("city"), 
+                            rs.getString("country")
+                    );
                     listAirport.add(el);
 
                 }
@@ -158,7 +164,7 @@ public class AirportDAO extends DAO<Airport, String> {
                 Statement st = this.bddmanager.getConnectionManager().createStatement();
                 String requete = "SELECT * FROM airports WHERE aita LIKE \"" + primary_key + "\"";
                 ResultSet rs = st.executeQuery(requete);
-                while (rs.next()) {
+                if(rs.next()){
                     airport.setAita(rs.getString("aita"));
                     airport.setCity(rs.getString("city"));
                     airport.setCountry(rs.getString("country"));
@@ -172,7 +178,30 @@ public class AirportDAO extends DAO<Airport, String> {
         } else {
             return airport;
         }
+
         return airport;
+    }
+    /**
+     * il verifie si l'object airport est rempli ou vide
+     * @param airport
+     * @return false is empty and true is full 
+     */
+    public boolean isValid(Airport airport){
+        boolean isValid = true;
+        
+        // if code aita is empty or null
+        if(airport.getAita().isEmpty() || airport.getAita() == null){
+            isValid = false;
+        }
+        // if city is empty or null
+        else if(airport.getCity().isEmpty() || airport.getCity() == null){
+            isValid = false;
+        }
+       // if country is empty or null
+        else if(airport.getCountry().isEmpty() || airport.getCountry() == null){
+            isValid = false;
+        }        
+        return isValid;            
     }
 
 }
