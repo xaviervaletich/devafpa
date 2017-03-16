@@ -16,16 +16,16 @@ import data.Airport;
  *
  * @author Salim El Moussaoui <salim.elmoussaoui.afpa2017@gmail.com>
  */
-public class AirportDAO extends DAO <Airport,String> {
+public class AirportDAO extends DAO<Airport, String> {
 
     public AirportDAO() {
         super();
     }
 
     @Override
-    public boolean create(Airport airport) {
-        boolean success = false;
-     
+    public Airport create(Airport airport) {
+
+        Airport airportCreate = new Airport();
         if (this.bddmanager.connect()) {
 
             try {
@@ -33,7 +33,7 @@ public class AirportDAO extends DAO <Airport,String> {
                 // create requete 
                 String requete = "INSERT INTO airports (aita,city,country) VALUES (?,?,?)";
                 // prepared requete 
-                PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete);
+                PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
                 // insert value in requete
                 pst.setString(1, airport.getAita());
                 pst.setString(2, airport.getCity());
@@ -42,23 +42,33 @@ public class AirportDAO extends DAO <Airport,String> {
                 int insert = pst.executeUpdate();
                 // if insert in table 
                 if (insert != 0) {
-                    success = true;
+                     // return generatKey
+                    ResultSet autoIncrementId = pst.getGeneratedKeys();
+                    // if next key
+                    if (autoIncrementId.next()) {
+
+                        airportCreate.setAita(autoIncrementId.getString(1));
+                        airportCreate.setCity(airport.getCity());
+                        airportCreate.setCountry(airport.getCountry());
+
+                    }
+
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                return success;
+                return airportCreate;
             }
 
         } else {
-            return success;
+            return airportCreate;
         }
-        return success;
+        return airportCreate;
     }
 
     @Override
     public boolean update(Airport airport) {
         boolean success = false;
-  
+
         if (this.bddmanager.connect()) {
 
             try {
@@ -91,7 +101,7 @@ public class AirportDAO extends DAO <Airport,String> {
     @Override
     public boolean delete(Airport airport) {
         boolean success = false;
-      
+
         if (this.bddmanager.connect()) {
 
             try {
@@ -148,21 +158,20 @@ public class AirportDAO extends DAO <Airport,String> {
         return listAirport;
     }
 
-    
     @Override
     public Airport find(String primary_key) {
-       Airport airport = new Airport();
+        Airport airport = new Airport();
         if (this.bddmanager.connect()) {
 
             try {
                 Statement st = this.bddmanager.getConnectionManager().createStatement();
                 String requete = "SELECT * FROM airports WHERE aita=\"" + primary_key + "\"";
                 ResultSet rs = st.executeQuery(requete);
-                 while (rs.next()) {
-                  airport.setAita(rs.getString("aita")); 
-                  airport.setCity(rs.getString("city"));
-                  airport.setCountry(rs.getString("country"));
-                }             
+                while (rs.next()) {
+                    airport.setAita(rs.getString("aita"));
+                    airport.setCity(rs.getString("city"));
+                    airport.setCountry(rs.getString("country"));
+                }
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -174,7 +183,6 @@ public class AirportDAO extends DAO <Airport,String> {
         }
         return airport;
     }
- 
 
     /**
      * relationship table
@@ -186,7 +194,5 @@ public class AirportDAO extends DAO <Airport,String> {
     public Object witdh(Object WithTable, Object forign_key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
 
 }
