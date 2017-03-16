@@ -159,21 +159,20 @@ public class Flight {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 43 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 43 * hash + Objects.hashCode(this.departing_aita);
-        hash = 43 * hash + Objects.hashCode(this.arrival_aita);
-        hash = 43 * hash + Objects.hashCode(this.departing_hour);
-        hash = 43 * hash + this.duration;
-        hash = 43 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
-        hash = 43 * hash + (int) (this.id_pilot ^ (this.id_pilot >>> 32));
-        hash = 43 * hash + (int) (this.id_copilot ^ (this.id_copilot >>> 32));
-        hash = 43 * hash + (int) (this.id_staff1 ^ (this.id_staff1 >>> 32));
-        hash = 43 * hash + (int) (this.id_staff2 ^ (this.id_staff2 >>> 32));
-        hash = 43 * hash + (int) (this.id_staff3 ^ (this.id_staff3 >>> 32));
-        hash = 43 * hash + (this.planned ? 1 : 0);
+        hash = 29 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 29 * hash + Objects.hashCode(this.departing_aita);
+        hash = 29 * hash + Objects.hashCode(this.arrival_aita);
+        hash = 29 * hash + Objects.hashCode(this.departing_hour);
+        hash = 29 * hash + this.duration;
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
+        hash = 29 * hash + (int) (this.id_pilot ^ (this.id_pilot >>> 32));
+        hash = 29 * hash + (int) (this.id_copilot ^ (this.id_copilot >>> 32));
+        hash = 29 * hash + (int) (this.id_staff1 ^ (this.id_staff1 >>> 32));
+        hash = 29 * hash + (int) (this.id_staff2 ^ (this.id_staff2 >>> 32));
+        hash = 29 * hash + (int) (this.id_staff3 ^ (this.id_staff3 >>> 32));
+        hash = 29 * hash + (this.planned ? 1 : 0);
         return hash;
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -225,6 +224,7 @@ public class Flight {
         }
         return true;
     }
+
     
     
 }
