@@ -159,11 +159,10 @@ public class AirportDAO extends DAO <Airport,String> {
                 String requete = "SELECT * FROM airports WHERE aita=\"" + primary_key + "\"";
                 ResultSet rs = st.executeQuery(requete);
                  while (rs.next()) {
-                  airport = new Airport(rs.getString("aita"), rs.getString("city"), rs.getString("country"));
-
-                }
-
-              
+                  airport.setAita(rs.getString("aita")); 
+                  airport.setCity(rs.getString("city"));
+                  airport.setCountry(rs.getString("country"));
+                }             
 
             } catch (SQLException ex) {
                 ex.printStackTrace();

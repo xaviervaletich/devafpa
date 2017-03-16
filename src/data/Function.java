@@ -25,7 +25,9 @@ public class Function {
     public String getDefinition() {
         return definition;
     }
-
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setDefinition(String definition) {
         this.definition = definition;
     }

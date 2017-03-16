@@ -37,7 +37,9 @@ public class Booking {
     public int getPlace() {
         return place;
     }
-
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }

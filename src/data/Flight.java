@@ -87,7 +87,9 @@ public class Flight {
         return planned;
     }
 
-
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setDeparting_aita(String departing_aita) {
         this.departing_aita = departing_aita;
     }

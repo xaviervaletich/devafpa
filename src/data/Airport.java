@@ -36,7 +36,9 @@ public class Airport {
     public String getCountry() {
         return country;
     }
-
+    public void setAita(String aita) {
+        this.aita = aita;
+    }
     public void setCity(String city) {
         this.city = city;
     }
