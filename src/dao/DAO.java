@@ -22,7 +22,7 @@ public abstract class DAO<T,S> {
      * @param obj
      * @return if success insert then return true else false
      */
-    public abstract boolean create(T obj);
+    public abstract T create(T obj);
     /**
      * Update row in table
      * @param obj
