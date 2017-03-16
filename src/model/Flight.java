@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Salim El Moussaoui <salim.elmoussaoui.afpa2017@gmail.com>
@@ -23,7 +25,22 @@ public class Flight {
     private int id_staff2;
     private int id_staff3;
     private boolean planned;
-
+    
+    public Flight() {
+        this.id = 0;
+        this.departing_aita = "";
+        this.arrival_aita = "";
+        this.departing_hour = "";
+        this.duration = 0;
+        this.price = 0;
+        this.id_pilot = 0;
+        this.id_copilot = 0;
+        this.id_staff1 = 0;
+        this.id_staff2 = 0;
+        this.id_staff3 = 0;
+        this.planned = false;
+    }
+    
     public Flight(int id, String departing_aita, String arrival_aita, String departing_hour, int duration, double price, int id_pilot, int id_copilot, int id_staff1, int id_staff2, int id_staff3, boolean planned) {
         this.id = id;
         this.departing_aita = departing_aita;
@@ -134,4 +151,79 @@ public class Flight {
         this.planned = planned;
     }
 
+    @Override
+    public String toString() {
+        return "Flight{" + "id=" + id + ", departing_aita=" + departing_aita + ", arrival_aita=" + arrival_aita + ", departing_hour=" + departing_hour + ", duration=" + duration + ", price=" + price + ", id_pilot=" + id_pilot + ", id_copilot=" + id_copilot + ", id_staff1=" + id_staff1 + ", id_staff2=" + id_staff2 + ", id_staff3=" + id_staff3 + ", planned=" + planned + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + this.id;
+        hash = 83 * hash + Objects.hashCode(this.departing_aita);
+        hash = 83 * hash + Objects.hashCode(this.arrival_aita);
+        hash = 83 * hash + Objects.hashCode(this.departing_hour);
+        hash = 83 * hash + this.duration;
+        hash = 83 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
+        hash = 83 * hash + this.id_pilot;
+        hash = 83 * hash + this.id_copilot;
+        hash = 83 * hash + this.id_staff1;
+        hash = 83 * hash + this.id_staff2;
+        hash = 83 * hash + this.id_staff3;
+        hash = 83 * hash + (this.planned ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Flight other = (Flight) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.duration != other.duration) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.price) != Double.doubleToLongBits(other.price)) {
+            return false;
+        }
+        if (this.id_pilot != other.id_pilot) {
+            return false;
+        }
+        if (this.id_copilot != other.id_copilot) {
+            return false;
+        }
+        if (this.id_staff1 != other.id_staff1) {
+            return false;
+        }
+        if (this.id_staff2 != other.id_staff2) {
+            return false;
+        }
+        if (this.id_staff3 != other.id_staff3) {
+            return false;
+        }
+        if (this.planned != other.planned) {
+            return false;
+        }
+        if (!Objects.equals(this.departing_aita, other.departing_aita)) {
+            return false;
+        }
+        if (!Objects.equals(this.arrival_aita, other.arrival_aita)) {
+            return false;
+        }
+        if (!Objects.equals(this.departing_hour, other.departing_hour)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
