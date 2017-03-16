@@ -52,8 +52,8 @@ public class AirportDAOTest {
         // find airport  create 
         Airport expResult = airportDAO.find(airport.getAita());
         
-        // if find aita is empty
-        if (expResult.getAita().isEmpty()) {
+        // if find aita is empty or null
+        if (!airportDAO.isValid(expResult)) {
             // insert airport in table
             Airport result = airportDAO.create(airport);   
             // find airport
@@ -76,7 +76,7 @@ public class AirportDAOTest {
         Airport findAirport = airportDAO.find(airportInsert.getAita());
         
         // if find airport is empty
-        if (findAirport.getAita().isEmpty()) {
+        if (!airportDAO.isValid(findAirport)) {
             // Insert airport in table
             Airport resultAirport = airportDAO.create(airportInsert);  
             // find airport
@@ -111,7 +111,7 @@ public class AirportDAOTest {
         Airport findAirport = airportDAO.find(airportInsert.getAita());
         
         // if find airport is empty
-        if (findAirport.getAita().isEmpty()) {
+       if (!airportDAO.isValid(findAirport)) {
             // Insert airport in table
             Airport resultAirport = airportDAO.create(airportInsert);  
             // find airport
