@@ -90,7 +90,7 @@ public class AirportDAO extends DAO<Airport, String> {
     }
 
     @Override
-    public boolean delete(Airport airport) {
+    public boolean delete(String primary_key) {
         boolean success = false;
 
         if (this.bddmanager.connect()) {
@@ -102,7 +102,7 @@ public class AirportDAO extends DAO<Airport, String> {
                 // prepared requete 
                 PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete);
                 // insert value in requete
-                pst.setString(1, airport.getAita());
+                pst.setString(1, primary_key);
                 // excute delete row in table
                 int insert = pst.executeUpdate();
                 // if insert in table 
