@@ -5,7 +5,7 @@
  */
 package dao;
 
-import data.Airport;
+import model.Airport;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.junit.After;
