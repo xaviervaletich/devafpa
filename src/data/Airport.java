@@ -5,6 +5,8 @@
  */
 package data;
 
+import java.util.Objects;
+
 /**
  *
  * @author Salim El Moussaoui <salim.elmoussaoui.afpa2017@gmail.com>
@@ -45,6 +47,44 @@ public class Airport {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return "Airport{" + "aita=" + aita + ", city=" + city + ", country=" + country + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.aita);
+        hash = 41 * hash + Objects.hashCode(this.city);
+        hash = 41 * hash + Objects.hashCode(this.country);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Airport other = (Airport) obj;
+        if (!Objects.equals(this.aita, other.aita)) {
+            return false;
+        }
+        if (!Objects.equals(this.city, other.city)) {
+            return false;
+        }
+        if (!Objects.equals(this.country, other.country)) {
+            return false;
+        }
+        return true;
     }
     
     
