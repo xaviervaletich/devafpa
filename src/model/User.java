@@ -11,7 +11,7 @@ package model;
  */
 public class User {
 
-    private int id;
+    private long id;
     private String firstname;
     private String lastname;
     private String adress;
@@ -21,7 +21,7 @@ public class User {
     private String mail;
     private int function;
 
-    public User(int id, String firstname, String lastname, String adress, String city, String country, String tel, String mail, int function) {
+    public User(long id, String firstname, String lastname, String adress, String city, String country, String tel, String mail, int function) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -33,7 +33,7 @@ public class User {
         this.function = function;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -69,7 +69,7 @@ public class User {
         return function;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
     
