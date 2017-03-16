@@ -131,7 +131,7 @@ public class AirportDAO extends DAO<Airport, String> {
     }
 
     @Override
-    public ArrayList findAll() {
+    public ArrayList getAll() {
         ArrayList<Airport> listAirport = new ArrayList<>();
         if (this.bddmanager.connect()) {
 
@@ -191,7 +191,7 @@ public class AirportDAO extends DAO<Airport, String> {
      * @param forign_key
      * @return
      */
-    public Object witdh(Object WithTable, Object forign_key) {
+    public Object with(Object WithTable, Object forign_key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
