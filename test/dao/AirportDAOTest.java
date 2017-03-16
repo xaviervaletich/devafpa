@@ -117,7 +117,7 @@ public class AirportDAOTest {
             // find airport
             findAirport = airportDAO.find(resultAirport.getAita()); 
             // delete airport
-            boolean result = airportDAO.delete(findAirport);
+            boolean result = airportDAO.delete(findAirport.getAita());
             boolean expResult = true;
             assertEquals(expResult, result);
         }
