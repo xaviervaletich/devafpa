@@ -147,24 +147,13 @@ public class AirportDAOTest {
     public void testFind() {
         System.out.println("find"); 
         AirportDAO airportDAO = new AirportDAO();
+        // assign primary key
         String primary_key = "DXB";
+        // assign result exemple
         String expResult = "Airport{aita=DXB, city=Dubaï, country=Émirats arabes unis}";
+        // find airport
         String result = airportDAO.find(primary_key).toString();
+        
         assertEquals(expResult, result);
     }
-    /**
-     * Test of witdh method, of class AirportDAO.
-     */
-//    @Test
-//    public void testWith() {
-//        System.out.println("witdh");
-//        Object WithTable = null;
-//        Object forign_key = null;
-//        AirportDAO instance = new AirportDAO();
-//        Object expResult = null;
-//        Object result = instance.witdh(WithTable, forign_key);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
 }
