@@ -39,7 +39,7 @@ public abstract class DAO<T,S> {
      * get all row in table
      * @return list collection all row 
      */
-    public abstract ArrayList<T> findAll();  
+    public abstract ArrayList<T> getAll();  
     /**
      * get row 
      * @param id
