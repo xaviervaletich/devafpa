@@ -65,7 +65,7 @@ public class AirportDAO extends DAO<Airport, String> {
             try {
 
                 // create requete 
-                String requete = "Update airports set city = ?,country = ? WHERE aita= ?";
+                String requete = "Update airports set city = ?,country = ? WHERE aita LIKE ?";
                 // prepared requete 
                 PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete);
                 // insert value in requete
@@ -156,7 +156,7 @@ public class AirportDAO extends DAO<Airport, String> {
 
             try {
                 Statement st = this.bddmanager.getConnectionManager().createStatement();
-                String requete = "SELECT * FROM airports WHERE aita LIKE\"" + primary_key + "\"";
+                String requete = "SELECT * FROM airports WHERE aita LIKE \"" + primary_key + "\"";
                 ResultSet rs = st.executeQuery(requete);
                 while (rs.next()) {
                     airport.setAita(rs.getString("aita"));
