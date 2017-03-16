@@ -46,12 +46,17 @@ public class AirportDAOTest {
     @Test
     public void testCreate() {
         System.out.println("create");
+        // create object airport
         Airport airport = new Airport("TIT", "ma ville", "mon pays");
         AirportDAO airportDAO = new AirportDAO();
+        // find airport  create 
         Airport expResult = airportDAO.find(airport.getAita());
+        
         // if find aita is empty
         if (expResult.getAita().isEmpty()) {
-            Airport result = airportDAO.create(airport);        
+            // insert airport in table
+            Airport result = airportDAO.create(airport);   
+            // find airport
             expResult = airportDAO.find(airport.getAita());
             assertEquals(expResult, result);
         }
@@ -75,17 +80,28 @@ public class AirportDAOTest {
     /**
      * Test of delete method, of class AirportDAO.
      */
-//    @Test
-//    public void testDelete() {
-//        System.out.println("delete");
-//        Airport airport = null;
-//        AirportDAO instance = new AirportDAO();
-//        boolean expResult = false;
-//        boolean result = instance.delete(airport);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testDelete() {
+        System.out.println("delete");
+        AirportDAO airportDAO = new AirportDAO();
+        
+        // create object airport
+        Airport airportInsert = new Airport("AGA", "agadir", "Maroc");
+        // find airport  create 
+        Airport findAirport = airportDAO.find(airportInsert.getAita());
+        
+        // if find airport is empty
+        if (findAirport.getAita().isEmpty()) {
+            // Insert airport in table
+            Airport resultAirport = airportDAO.create(airportInsert);  
+            // find airport
+            findAirport = airportDAO.find(resultAirport.getAita()); 
+            // delete airport
+            boolean result = airportDAO.delete(findAirport);
+            boolean expResult = true;
+            assertEquals(expResult, result);
+        }
+    }
     /**
      * Test of findAll method, of class AirportDAO.
      */
