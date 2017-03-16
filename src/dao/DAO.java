@@ -34,7 +34,7 @@ public abstract class DAO<T,S> {
      * @param obj
      * @return if success delete then return true else false
      */
-    public abstract boolean delete(T obj);
+    public abstract boolean delete(S primary_key);
     /**
      * get all row in table
      * @return list collection all row 
