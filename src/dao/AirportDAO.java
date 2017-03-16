@@ -33,7 +33,7 @@ public class AirportDAO extends DAO<Airport, String> {
                 // create requete 
                 String requete = "INSERT INTO airports (aita,city,country) VALUES (?,?,?)";
                 // prepared requete 
-                PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete);
                 // insert value in requete
                 pst.setString(1, airport.getAita());
                 pst.setString(2, airport.getCity());
@@ -42,17 +42,8 @@ public class AirportDAO extends DAO<Airport, String> {
                 int insert = pst.executeUpdate();
                 // if insert in table 
                 if (insert != 0) {
-                     // return generatKey
-                    ResultSet autoIncrementId = pst.getGeneratedKeys();
-                    // if next key
-                    if (autoIncrementId.next()) {
-
-                        airportCreate.setAita(autoIncrementId.getString(1));
-                        airportCreate.setCity(airport.getCity());
-                        airportCreate.setCountry(airport.getCountry());
-
-                    }
-
+                    airportCreate = airport;
+                    return airportCreate;
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
