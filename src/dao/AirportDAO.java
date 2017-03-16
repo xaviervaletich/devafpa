@@ -175,15 +175,4 @@ public class AirportDAO extends DAO<Airport, String> {
         return airport;
     }
 
-    /**
-     * relationship table
-     *
-     * @param WithTable
-     * @param forign_key
-     * @return
-     */
-    public Object with(Object WithTable, Object forign_key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
