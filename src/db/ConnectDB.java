@@ -10,46 +10,58 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 /**
  *
  * @author Salim El Moussaoui <salim.elmoussaoui.afpa2017@gmail.com>
  */
 public class ConnectDB {
-    
+
+    // Assign values ​​for connection db mysql
     private static final String DB_URL = "jdbc:mysql://localhost:3306/airafpa";
     private static final String DB_JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_USER = "afpa";
     private static final String DB_PASSWORD = "afpa";
-    
+
     private Connection cn = null;
-    
+
     private ConnectDB() {
-        
-        try{
+        // import jdbc mysql
+        try {
             Class.forName(ConnectDB.DB_JDBC_DRIVER);
-            
+
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
             System.exit(1);
         }
-        
+
     }
+
     /**
-     * this Singleton for connexion DB
-     * @return 
+     * Singleton for connexion DB
+     *
+     * @return
      */
     public static ConnectDB getInstance() {
         return ConnexionBdDHolder.INSTANCE;
     }
-    
+
+    /**
+     * Assign class ConnectDB
+     */
     private static class ConnexionBdDHolder {
 
         private static final ConnectDB INSTANCE = new ConnectDB();
     }
-    
-    public boolean connect(){
-        if(this.cn == null){
+
+    /**
+     * check connect DB
+     *
+     * @return
+     */
+    public boolean connect() {
+        // connect db is null
+        if (this.cn == null) {
+            // connect db
             try {
                 this.cn = DriverManager.getConnection(ConnectDB.DB_URL, ConnectDB.DB_USER, ConnectDB.DB_PASSWORD);
             } catch (SQLException ex) {
@@ -57,11 +69,12 @@ public class ConnectDB {
                 return false;
             }
         } else {
+            // check connect db
             try {
                 Statement st = this.cn.createStatement();
                 String requete = "SELECT 1";
                 st.executeQuery(requete);
-                
+
             } catch (SQLException ex) {
                 try {
                     this.cn = DriverManager.getConnection(ConnectDB.DB_URL, ConnectDB.DB_USER, ConnectDB.DB_PASSWORD);
@@ -71,11 +84,16 @@ public class ConnectDB {
                 }
             }
         }
-        
+
         return true;
     }
-    
-    public Connection getConnectionManager(){
+
+    /**
+     * connect db
+     *
+     * @return connect db
+     */
+    public Connection getConnectionManager() {
         return this.cn;
     }
 }
