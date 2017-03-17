@@ -12,15 +12,20 @@ import java.util.Objects;
  * @author Salim El Moussaoui <salim.elmoussaoui.afpa2017@gmail.com>
  */
 public class Airport {
+
+    // name columns in table airport
     private String aita;
     private String city;
     private String country;
 
-   public Airport() {
+    // this construct create airport empty
+    public Airport() {
         this.aita = "";
         this.city = "";
         this.country = "";
     }
+    // this construct create airport full
+
     public Airport(String aita, String city, String country) {
         this.aita = aita;
         this.city = city;
@@ -38,9 +43,11 @@ public class Airport {
     public String getCountry() {
         return country;
     }
+
     public void setAita(String aita) {
         this.aita = aita;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
@@ -86,7 +93,5 @@ public class Airport {
         }
         return true;
     }
-    
-    
-    
+
 }
