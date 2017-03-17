@@ -51,19 +51,18 @@ public class FlightDAOTest {
         FlightDAO flightDAO = new FlightDAO();
         // find flight  create 
         Flight expResult = flightDAO.find(flight.getId());
-        
-     
+
         // if find aita is empty or null
-        if (!flightDAO.isValid(expResult)) {   
-            
+        if (!flightDAO.isValid(expResult)) {
+
             System.out.println(expResult);
             // insert flight in table
-            Flight result = flightDAO.create(flight);   
-                  System.out.println(result);
+            Flight result = flightDAO.create(flight);
+            System.out.println(result);
             // find flight
             expResult = flightDAO.find(flight.getId());
             System.out.println(expResult);
-            assertEquals(expResult, result);          
+            assertEquals(expResult, result);
         }
 
     }
@@ -75,17 +74,17 @@ public class FlightDAOTest {
     public void testUpdate() {
         System.out.println("update");
         // create object flight      
-        Flight flightInsert = new Flight(0, "FNJ", "MRS", "2017-03-20 05:30:00", 400, 478.75, 1, 2, 3, 4, 5, false);
+        Flight flightInsert = new Flight(0, "FNJ", "MRS", "2017-03-20 05:30:00", 400, 478.75, 1, 0, 0, 4, 5, false);
         FlightDAO flightDAO = new FlightDAO();
         // find flight create 
         Flight findFlight = flightDAO.find(flightInsert.getId());
-        
+
         // if find flight is empty
         if (!flightDAO.isValid(findFlight)) {
             // Insert flight in table
-            Flight resultFlight = flightDAO.create(flightInsert);  
+            Flight resultFlight = flightDAO.create(flightInsert);
             // find flight
-            findFlight = flightDAO.find(resultFlight.getId()); 
+            findFlight = flightDAO.find(resultFlight.getId());
             // modify flight
             findFlight.setDeparting_aita("MRS");
             findFlight.setArrival_aita("FNJ");
@@ -97,9 +96,9 @@ public class FlightDAOTest {
             findFlight.setId_staff1(3);
             findFlight.setId_staff1(4);
             findFlight.setId_staff2(5);
-            findFlight.setPlanned(true);      
+            findFlight.setPlanned(true);
 
-        }else{
+        } else {
             // modify flight
             findFlight.setDeparting_aita("MRS");
             findFlight.setArrival_aita("FNJ");
@@ -111,15 +110,15 @@ public class FlightDAOTest {
             findFlight.setId_staff1(3);
             findFlight.setId_staff1(4);
             findFlight.setId_staff2(5);
-            findFlight.setPlanned(true);         
-            
- 
-        }    
+            findFlight.setPlanned(true);
+
+        }
         // update flight
-        boolean result = flightDAO.update(findFlight);   
+        boolean result = flightDAO.update(findFlight);
         boolean expResult = true;
         assertEquals(expResult, result);
     }
+
     /**
      * Test of delete method, of class FlightDAO.
      */
@@ -127,24 +126,25 @@ public class FlightDAOTest {
     public void testDelete() {
         System.out.println("delete");
         FlightDAO flightDAO = new FlightDAO();
-        
+
         // create object flight	
         Flight flightInsert = new Flight(0, "TLS", "MRS", "2017-03-20 05:30:00", 250, 175.75, 1, 2, 3, 4, 5, true);
         // find flight  create 
         Flight findFlight = flightDAO.find(flightInsert.getId());
-        
+
         // if find flight is empty
-       if (!flightDAO.isValid(findFlight)) {
+        if (!flightDAO.isValid(findFlight)) {
             // Insert flight in table
-            Flight resultFlight = flightDAO.create(flightInsert);  
+            Flight resultFlight = flightDAO.create(flightInsert);
             // find flight
-            findFlight = flightDAO.find(resultFlight.getId()); 
+            findFlight = flightDAO.find(resultFlight.getId());
             // delete flight
             boolean result = flightDAO.delete(findFlight.getId());
             boolean expResult = true;
             assertEquals(expResult, result);
         }
     }
+
     /**
      * Test of findAll method, of class FlightDAO.
      */
@@ -168,17 +168,17 @@ public class FlightDAOTest {
      */
     @Test
     public void testFind() {
-        System.out.println("find"); 
+        System.out.println("find");
         FlightDAO flightDAO = new FlightDAO();
         // assign primary key
         long primary_key = 5;
         // assign result exemple
         String expResult = "Flight{id=5, departing_aita=DXB, arrival_aita=ICN, departing_hour=2017-05-01 08:00:00.0, duration=420, price=358.67, id_pilot=1, id_copilot=0, id_staff1=4, id_staff2=0, id_staff3=0, planned=false}";
-        
+
         System.out.println(flightDAO.find(primary_key).toString());
         // find flight
         String result = flightDAO.find(primary_key).toString();
-        
+
         assertEquals(expResult, result);
     }
 }
