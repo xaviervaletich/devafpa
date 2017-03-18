@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import model.Flight;
 
@@ -51,12 +52,34 @@ public class FlightDAO extends DAO<Flight, Long> {
                 pst.setString(2, flight.getArrival_aita());
                 pst.setString(3, flight.getDeparting_hour());
                 pst.setInt(4, flight.getDuration());
-                pst.setDouble(5, flight.getPrice());
-                pst.setLong(6, flight.getId_pilot());
-                pst.setLong(7, flight.getId_copilot());
-                pst.setLong(8, flight.getId_staff1());
-                pst.setLong(9, flight.getId_staff2());
-                pst.setLong(10, flight.getId_staff3());
+                pst.setDouble(5, flight.getPrice());                
+                 if (flight.getId_pilot() == 0) {         
+                    pst.setNull(6, Types.BIGINT);
+                } else {          
+                    pst.setLong(6, flight.getId_pilot());
+                }
+                if (Long.valueOf(flight.getId_copilot()) == 0) {
+
+                    pst.setNull(7, Types.BIGINT);
+                } else {
+                    pst.setLong(7, flight.getId_copilot());
+                }
+                if (flight.getId_staff1() == 0) {
+                    pst.setNull(8, Types.BIGINT);
+                } else {
+                    pst.setLong(8, flight.getId_staff1());
+                }
+
+                if (flight.getId_staff2() == 0) {
+                    pst.setNull(9, Types.BIGINT);
+                } else {
+                    pst.setLong(9, flight.getId_staff2());
+                }
+                if (flight.getId_staff3() == 0) {
+                    pst.setNull(10, Types.BIGINT);
+                } else {
+                    pst.setLong(10, flight.getId_staff3());
+                }
                 pst.setBoolean(11, flight.getPlanned());
 
                 // excute insert row in table
@@ -94,16 +117,17 @@ public class FlightDAO extends DAO<Flight, Long> {
 
                 // create requete 
                 String requete = "Update flights set departing_aita = ?,\n"
-                        + "arrival_aita = ?,\n"
-                        + "departing_hour = ?,\n"
-                        + "duration = ?,\n"
-                        + "price = ?,\n"
-                        + "id_pilot = ?,\n"
-                        + "id_copilot = ?,\n"
-                        + "id_staff1 = ?,\n"
-                        + "id_staff2 = ?,\n"
-                        + "id_staff3 = ?,\n"
-                        + "planned = ? WHERE id = ?";
+                        + " arrival_aita = ?,\n"
+                        + " departing_hour = ?,\n"
+                        + " duration = ?,\n"
+                        + " price = ?,\n"
+                        + " id_pilot = ?,\n"
+                        + " id_copilot = ?,\n"
+                        + " id_staff1 = ?,\n"
+                        + " id_staff2 = ?,\n"
+                        + " id_staff3 = ?,\n"
+                        + " planned = ?"
+                        + " WHERE id = ?";
                 // prepared requete 
                 PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete);
                 // insert value in requete
@@ -112,41 +136,41 @@ public class FlightDAO extends DAO<Flight, Long> {
                 pst.setString(3, flight.getDeparting_hour());
                 pst.setInt(4, flight.getDuration());
                 pst.setDouble(5, flight.getPrice());
+                
+                if (flight.getId_pilot() == 0) {         
+                    pst.setNull(6, Types.BIGINT);
 
-                if (flight.getId_pilot() == 0) {
-                    pst.setNull(6, java.sql.Types.BIGINT);
-                } else {
+                } else {          
                     pst.setLong(6, flight.getId_pilot());
                 }
+                if (Long.valueOf(flight.getId_copilot()) == 0) {
 
-                if (flight.getId_copilot() == 0) {
-                    pst.setNull(7, java.sql.Types.BIGINT);
+                    pst.setNull(7, Types.BIGINT);
                 } else {
                     pst.setLong(7, flight.getId_copilot());
                 }
                 if (flight.getId_staff1() == 0) {
-                    pst.setNull(8, java.sql.Types.BIGINT);
+                    pst.setNull(8, Types.BIGINT);
                 } else {
                     pst.setLong(8, flight.getId_staff1());
                 }
 
                 if (flight.getId_staff2() == 0) {
-                    pst.setNull(9, java.sql.Types.BIGINT);
+                    pst.setNull(9, Types.BIGINT);
                 } else {
                     pst.setLong(9, flight.getId_staff2());
                 }
-                if (flight.getId_staff1() == 0) {
-                    pst.setNull(10, java.sql.Types.BIGINT);
+                if (flight.getId_staff3() == 0) {
+                    pst.setNull(10, Types.BIGINT);
                 } else {
-                    pst.setLong(10, flight.getId_staff2());
+                    pst.setLong(10, flight.getId_staff3());
                 }
                 pst.setBoolean(11, flight.getPlanned());
                 pst.setLong(12, flight.getId());
                 // excute update row in table
                 int insert = pst.executeUpdate();
                 // if insert in table 
-                if (insert != 0) {
-                    System.out.println("update !!!!!!!");
+                if (insert != 0) {            
                     success = true;
                 }
             } catch (SQLException ex) {
@@ -287,5 +311,7 @@ public class FlightDAO extends DAO<Flight, Long> {
 
         return isValid;
     }
+    
+    
 
 }
