@@ -58,6 +58,8 @@ public class AirportDAOTest {
             Airport result = airportDAO.create(airport);   
             // find airport
             expResult = airportDAO.find(airport.getAita());
+            // delete airport
+            airportDAO.delete(result.getAita());
             assertEquals(expResult, result);          
         }
 
@@ -80,21 +82,18 @@ public class AirportDAOTest {
             // Insert airport in table
             Airport resultAirport = airportDAO.create(airportInsert);  
             // find airport
-            findAirport = airportDAO.find(resultAirport.getAita()); 
-            // modify airport
-            findAirport.setCity("update Aseki");
-            findAirport.setCountry("update Papouasie-Nouvelle-Guinée");         
-
-        }else{
+            findAirport = airportDAO.find(resultAirport.getAita());    
+        }
             // modify airport
             findAirport.setCity("update Aseki");
             findAirport.setCountry("update Papouasie-Nouvelle-Guinée");         
             
- 
-        }    
+   
         // update airport
         boolean result = airportDAO.update(findAirport);   
         boolean expResult = true;
+        // delete airport
+        airportDAO.delete(findAirport.getAita());
         assertEquals(expResult, result);
     }
     /**
