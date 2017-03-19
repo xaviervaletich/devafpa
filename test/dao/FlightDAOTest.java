@@ -21,25 +21,6 @@ import static org.junit.Assert.*;
  */
 public class FlightDAOTest {
 
-    public FlightDAOTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of create method, of class FlightDAO.
      */
@@ -47,7 +28,8 @@ public class FlightDAOTest {
     public void testCreate() {
         System.out.println("create");
         // create object flight    
-        Flight flight = new Flight(0, "MRS", "FNJ", "2017-03-20 05:30:00.0", 400, 275.75, 1, 2, 3, 4, 5, true);
+        Flight flight = new Flight(0, "MRS", "FNJ",
+                "2017-03-20 05:30:00.0", 400, 275.75, 1, 2, 3, 4, 5, true);
         FlightDAO flightDAO = new FlightDAO();
         // find flight  create 
         Flight expResult = flightDAO.find(flight.getId());
@@ -73,7 +55,8 @@ public class FlightDAOTest {
     public void testUpdate() {
         System.out.println("update");
         // create object flight      
-        Flight flightInsert = new Flight(0, "FNJ", "LAS", "2017-03-20 05:30:00", 400, 478.75, 0, 0, 0, 0, 0, false);
+        Flight flightInsert = new Flight(0, "FNJ", "LAS", "2017-03-20 05:30:00",
+                400, 478.75, 0, 0, 0, 0, 0, false);
         // instatied flightDAO
         FlightDAO flightDAO = new FlightDAO();
         // find flight create 
@@ -115,7 +98,8 @@ public class FlightDAOTest {
         FlightDAO flightDAO = new FlightDAO();
 
         // create object flight	
-        Flight flightInsert = new Flight(0, "TLS", "MRS", "2017-03-20 05:30:00", 250, 175.75, 1, 2, 3, 4, 5, true);
+        Flight flightInsert = new Flight(0, "TLS", "MRS", "2017-03-20 05:30:00",
+                250, 175.75, 1, 2, 3, 4, 5, true);
         // find flight  create 
         Flight findFlight = flightDAO.find(flightInsert.getId());
 
@@ -160,7 +144,10 @@ public class FlightDAOTest {
         // assign primary key
         long primary_key = 5;
         // assign result exemple
-        String expResult = "Flight{id=5, departing_aita=DXB, arrival_aita=ICN, departing_hour=2017-05-01 08:00:00.0, duration=420, price=358.67, id_pilot=1, id_copilot=0, id_staff1=4, id_staff2=0, id_staff3=0, planned=false}";
+        String expResult = "Flight{id=5, departing_aita=DXB, arrival_aita=ICN, "
+                + "departing_hour=2017-05-01 08:00:00.0, duration=420, "
+                + "price=358.67, id_pilot=1, id_copilot=0, id_staff1=4, "
+                + "id_staff2=0, id_staff3=0, planned=false}";
 
         // find flight
         String result = flightDAO.find(primary_key).toString();
