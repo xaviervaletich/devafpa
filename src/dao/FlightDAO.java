@@ -22,7 +22,13 @@ public class FlightDAO extends DAO<Flight, Long> {
     public FlightDAO() {
         super();
     }
-
+   /**
+     *
+     * Create flight
+     *
+     * @param flight
+     * @return flight object
+     */
     @Override
     public Flight create(Flight flight) {
 
@@ -45,14 +51,16 @@ public class FlightDAO extends DAO<Flight, Long> {
                         + " id_staff3,\n"
                         + " planned"
                         + ") VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-                // prepared requete 
-                PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+                // prepared requete and get return generated key
+                PreparedStatement pst = this.bddmanager.getConnectionManager()
+                   .prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
                 // insert value in requete
                 pst.setString(1, flight.getDeparting_aita());
                 pst.setString(2, flight.getArrival_aita());
                 pst.setString(3, flight.getDeparting_hour());
                 pst.setInt(4, flight.getDuration());
-                pst.setDouble(5, flight.getPrice());                
+                pst.setDouble(5, flight.getPrice());  
+                // if it's null
                  if (flight.getId_pilot() == 0) {         
                     pst.setNull(6, Types.BIGINT);
                 } else {          
@@ -86,11 +94,13 @@ public class FlightDAO extends DAO<Flight, Long> {
                 int insert = pst.executeUpdate();
                 // if insert in table 
                 if (insert != 0) {
-
+                    // get generate key
                     ResultSet id_increment = pst.getGeneratedKeys();
-
+                    // if it's generate key
                     if (id_increment.next()) {
+                        // assign key in fligh object
                         flight.setId(id_increment.getInt(1));
+                        // assign object fligh in object return
                         flightCreate = flight;
                     }
 
@@ -106,7 +116,12 @@ public class FlightDAO extends DAO<Flight, Long> {
 
         return flightCreate;
     }
-
+    /**
+     * Update flight
+     *
+     * @param flight
+     * @return true is update flight, false isn't update
+     */
     @Override
     public boolean update(Flight flight) {
         boolean success = false;
@@ -129,14 +144,15 @@ public class FlightDAO extends DAO<Flight, Long> {
                         + " planned = ?"
                         + " WHERE id = ?";
                 // prepared requete 
-                PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete);
+                PreparedStatement pst = this.bddmanager
+                        .getConnectionManager().prepareStatement(requete);
                 // insert value in requete
                 pst.setString(1, flight.getDeparting_aita());
                 pst.setString(2, flight.getArrival_aita());
                 pst.setString(3, flight.getDeparting_hour());
                 pst.setInt(4, flight.getDuration());
                 pst.setDouble(5, flight.getPrice());
-                
+                // if it's null 
                 if (flight.getId_pilot() == 0) {         
                     pst.setNull(6, Types.BIGINT);
 
@@ -184,6 +200,12 @@ public class FlightDAO extends DAO<Flight, Long> {
         return success;
     }
 
+    /**
+     * delete flight
+     *
+     * @param primary_key
+     * @return true is delete flight, false isn't delete
+     */
     @Override
     public boolean delete(Long primary_key) {
         boolean success = false;
@@ -195,12 +217,13 @@ public class FlightDAO extends DAO<Flight, Long> {
                 // create requete 
                 String requete = "DELETE FROM flights WHERE id = ?";
                 // prepared requete 
-                PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete);
+                PreparedStatement pst = this.bddmanager.getConnectionManager()
+                        .prepareStatement(requete);
                 // insert value in requete
                 pst.setLong(1, primary_key);
                 // excute delete row in table
                 int insert = pst.executeUpdate();
-                // if insert in table 
+                // if delete in table 
                 if (insert != 0) {
                     success = true;
                 }
@@ -215,19 +238,27 @@ public class FlightDAO extends DAO<Flight, Long> {
         return success;
 
     }
-
+    /**
+     * get all flights
+     *
+     * @return all flights
+     */
     @Override
     public ArrayList getAll() {
+         // create array list airport empty
         ArrayList<Flight> listFlight = new ArrayList<>();
         if (this.bddmanager.connect()) {
 
             try {
+                 // create statement 
                 Statement st = this.bddmanager
                         .getConnectionManager()
                         .createStatement();
+                 // create requete 
                 String requete = "SELECT * FROM flights";
+                // excute requete
                 ResultSet rs = st.executeQuery(requete);
-
+                // insert all airports in array object airport
                 while (rs.next()) {
                     Flight el = new Flight(
                             rs.getInt("id"),
@@ -258,17 +289,30 @@ public class FlightDAO extends DAO<Flight, Long> {
 
         return listFlight;
     }
-
+    /**
+     * find flight
+     *
+     * @param primary_key
+     * @return flight
+     */
     @Override
     public Flight find(Long primary_key) {
+        // create array airport empty
         Flight flight = new Flight();
+        //check if connect db
         if (this.bddmanager.connect()) {
 
             try {
-                Statement st = this.bddmanager.getConnectionManager().createStatement();
+                // create statement for find 
+                Statement st = this.bddmanager.getConnectionManager()
+                        .createStatement();
+                // create requete add primary key
                 String requete = "SELECT * FROM flights WHERE id = " + primary_key;
+                 // excute requete
                 ResultSet rs = st.executeQuery(requete);
+                  // if result is full
                 if (rs.next()) {
+                    // insert airports in object
                     flight.setId(rs.getLong("id"));
                     flight.setDeparting_aita(rs.getString("departing_aita"));
                     flight.setArrival_aita(rs.getString("Arrival_aita"));
@@ -296,7 +340,7 @@ public class FlightDAO extends DAO<Flight, Long> {
     }
 
     /**
-     * il verifie si l'object flight est rempli ou vide
+     * It checks if the object fligh is filled or empty
      *
      * @param flight
      * @return false is empty and true is full
@@ -304,7 +348,7 @@ public class FlightDAO extends DAO<Flight, Long> {
     public boolean isValid(Flight flight) {
         boolean isValid = true;
 
-        // if code aita is empty or null
+        // if id is empty
         if (flight.getId() == 0) {
             isValid = false;
         }
