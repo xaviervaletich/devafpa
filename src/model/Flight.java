@@ -12,7 +12,7 @@ import java.util.Objects;
  * @author Salim El Moussaoui <salim.elmoussaoui.afpa2017@gmail.com>
  */
 public class Flight {
-
+    // name columns in table flights
     private long id;
     private String departing_aita;
     private String arrival_aita;
@@ -26,6 +26,7 @@ public class Flight {
     private long id_staff3;
     private boolean planned;
     
+    // this construct create flight empty 
     public Flight() {
         this.id = 0;
         this.departing_aita = "";
@@ -40,8 +41,12 @@ public class Flight {
         this.id_staff3 = 0;
         this.planned = false;
     }
-    
-    public Flight(long id, String departing_aita, String arrival_aita, String departing_hour, int duration, double price, long id_pilot, long id_copilot, long id_staff1, long id_staff2, long id_staff3, boolean planned) {
+     // this construct create flight full
+    public Flight(
+            long id, String departing_aita, String arrival_aita, 
+            String departing_hour, int duration, double price, long id_pilot, 
+            long id_copilot, long id_staff1, long id_staff2, long id_staff3, 
+            boolean planned) {
         this.id = id;
         this.departing_aita = departing_aita;
         this.arrival_aita = arrival_aita;
@@ -153,7 +158,12 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight{" + "id=" + id + ", departing_aita=" + departing_aita + ", arrival_aita=" + arrival_aita + ", departing_hour=" + departing_hour + ", duration=" + duration + ", price=" + price + ", id_pilot=" + id_pilot + ", id_copilot=" + id_copilot + ", id_staff1=" + id_staff1 + ", id_staff2=" + id_staff2 + ", id_staff3=" + id_staff3 + ", planned=" + planned + '}';
+        return "Flight{" + "id=" + id + ", departing_aita=" + departing_aita 
+                + ", arrival_aita=" + arrival_aita + ", departing_hour=" + 
+                departing_hour + ", duration=" + duration + ", price=" + price 
+                + ", id_pilot=" + id_pilot + ", id_copilot=" + id_copilot 
+                + ", id_staff1=" + id_staff1 + ", id_staff2=" + id_staff2 
+                + ", id_staff3=" + id_staff3 + ", planned=" + planned + '}';
     }
 
     @Override
@@ -164,7 +174,8 @@ public class Flight {
         hash = 29 * hash + Objects.hashCode(this.arrival_aita);
         hash = 29 * hash + Objects.hashCode(this.departing_hour);
         hash = 29 * hash + this.duration;
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.price) ^ 
+                            (Double.doubleToLongBits(this.price) >>> 32));
         hash = 29 * hash + (int) (this.id_pilot ^ (this.id_pilot >>> 32));
         hash = 29 * hash + (int) (this.id_copilot ^ (this.id_copilot >>> 32));
         hash = 29 * hash + (int) (this.id_staff1 ^ (this.id_staff1 >>> 32));
