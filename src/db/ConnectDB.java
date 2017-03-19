@@ -46,7 +46,7 @@ public class ConnectDB {
     }
 
     /**
-     * Assign class ConnectDB
+     * Assign Instance class ConnectDB
      */
     private static class ConnexionBdDHolder {
 
