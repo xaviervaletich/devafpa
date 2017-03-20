@@ -169,7 +169,7 @@ public class AccessSiteDAO extends DAO<AccessSite, Long> {
      */
     @Override
     public ArrayList getAll() {
-        // create array list airport empty
+        // create array list access_site empty
         ArrayList<AccessSite> listAccessSite = new ArrayList<>();
         if (this.bddmanager.connect()) {
 
@@ -182,7 +182,7 @@ public class AccessSiteDAO extends DAO<AccessSite, Long> {
                 String requete = "SELECT * FROM access_site";
                 // excute requete
                 ResultSet rs = st.executeQuery(requete);
-                // insert all airports in array object airport
+                // insert all access_sites in array object access_site
 
                 while (rs.next()) {
                     AccessSite el = new AccessSite(
@@ -214,7 +214,7 @@ public class AccessSiteDAO extends DAO<AccessSite, Long> {
      */
     @Override
     public AccessSite find(Long primary_key) {
-        // create array airport empty
+        // create array access_site empty
         AccessSite access_site = new AccessSite();
         //check if connect db
         if (this.bddmanager.connect()) {
@@ -229,7 +229,7 @@ public class AccessSiteDAO extends DAO<AccessSite, Long> {
                 ResultSet rs = st.executeQuery(requete);
                 // if result is full
                 if (rs.next()) {
-                    // insert airports in object                   
+                    // insert access_sites in object                   
                     access_site.setUser_id(rs.getLong("user_id"));
                     access_site.setNickname(rs.getString("nickname"));
                     access_site.setPassword(rs.getString("password"));
