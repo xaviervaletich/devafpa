@@ -15,6 +15,13 @@ public class Booking {
     private long flight_id;
     private int place;
 
+    public Booking() {
+        this.id = 0;
+        this.user_id = 0;
+        this.flight_id = 0;
+        this.place = 0;
+    }
+    
     public Booking(long id, long user_id, long flight_id, int place) {
         this.id = id;
         this.user_id = user_id;
