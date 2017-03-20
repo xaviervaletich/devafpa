@@ -15,7 +15,12 @@ public class AccessBackoffice {
     private long user_id;
     private String nickname;
     private String password;
-
+    
+    public AccessBackoffice() {
+        this.user_id = 0;
+        this.nickname = "";
+        this.password = "";
+    }
     public AccessBackoffice(long user_id, String nickname, String password) {
         this.user_id = user_id;
         this.nickname = nickname;
