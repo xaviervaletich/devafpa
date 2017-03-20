@@ -245,7 +245,7 @@ public class FlightDAO extends DAO<Flight, Long> {
      */
     @Override
     public ArrayList getAll() {
-         // create array list airport empty
+         // create array list flight empty
         ArrayList<Flight> listFlight = new ArrayList<>();
         if (this.bddmanager.connect()) {
 
@@ -258,7 +258,7 @@ public class FlightDAO extends DAO<Flight, Long> {
                 String requete = "SELECT * FROM flights";
                 // excute requete
                 ResultSet rs = st.executeQuery(requete);
-                // insert all airports in array object airport
+                // insert all flights in array object flight
                 while (rs.next()) {
                     Flight el = new Flight(
                             rs.getLong("id"),
@@ -297,7 +297,7 @@ public class FlightDAO extends DAO<Flight, Long> {
      */
     @Override
     public Flight find(Long primary_key) {
-        // create array airport empty
+        // create array flight empty
         Flight flight = new Flight();
         //check if connect db
         if (this.bddmanager.connect()) {
@@ -312,7 +312,7 @@ public class FlightDAO extends DAO<Flight, Long> {
                 ResultSet rs = st.executeQuery(requete);
                   // if result is full
                 if (rs.next()) {
-                    // insert airports in object
+                    // insert flights in object
                     flight.setId(rs.getLong("id"));
                     flight.setDeparting_aita(rs.getString("departing_aita"));
                     flight.setArrival_aita(rs.getString("Arrival_aita"));
