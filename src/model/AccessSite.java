@@ -16,6 +16,12 @@ public class AccessSite {
     private String nickname;
     private String password;
 
+    public AccessSite() {
+        this.user_id = 0;
+        this.nickname = "";
+        this.password = "";
+    }
+        
     public AccessSite(long user_id, String nickname, String password) {
         this.user_id = user_id;
         this.nickname = nickname;
