@@ -261,7 +261,7 @@ public class FlightDAO extends DAO<Flight, Long> {
                 // insert all airports in array object airport
                 while (rs.next()) {
                     Flight el = new Flight(
-                            rs.getInt("id"),
+                            rs.getLong("id"),
                             rs.getString("departing_aita"),
                             rs.getString("Arrival_aita"),
                             rs.getString("departing_hour"),
