@@ -199,7 +199,7 @@ public class UserDAO extends DAO<User, Long> {
      */
     @Override
     public ArrayList getAll() {
-        // create array list airport empty
+        // create array list user empty
         ArrayList<User> listUser = new ArrayList<>();
         if (this.bddmanager.connect()) {
 
@@ -212,7 +212,7 @@ public class UserDAO extends DAO<User, Long> {
                 String requete = "SELECT * FROM users";
                 // excute requete
                 ResultSet rs = st.executeQuery(requete);
-                // insert all airports in array object airport
+                // insert all users in array object user
 
                 while (rs.next()) {
                     User el = new User(
@@ -250,7 +250,7 @@ public class UserDAO extends DAO<User, Long> {
      */
     @Override
     public User find(Long primary_key) {
-        // create array airport empty
+        // create array user empty
         User user = new User();
         //check if connect db
         if (this.bddmanager.connect()) {
@@ -265,7 +265,7 @@ public class UserDAO extends DAO<User, Long> {
                 ResultSet rs = st.executeQuery(requete);
                 // if result is full
                 if (rs.next()) {
-                    // insert airports in object                   
+                    // insert users in object                   
 
                     user.setId(rs.getLong("id"));
                     user.setFirstname(rs.getString("firstname"));
