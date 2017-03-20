@@ -14,7 +14,12 @@ import java.util.Objects;
 public class Function {
     private int id;
     private String definition;
-
+    
+    public Function() {
+        this.id = 0;
+        this.definition = "";
+    }
+    
     public Function(int id, String definition) {
         this.id = id;
         this.definition = definition;
