@@ -24,7 +24,7 @@ public class FlightDAOTest {
         System.out.println("create");
         // create object flight    
         Flight flight = new Flight(0, "MRS", "FNJ",
-                "2017-03-20 05:30:00.0", 400, 275.75, 1, 2, 3, 4, 5, true);
+                "2017-03-20 05:30:00.0", 400, 275.75, 1, 0, 3, 4, 5, false);
         FlightDAO flightDAO = new FlightDAO();
         // find flight  create 
         Flight expResult = flightDAO.find(flight.getId());
