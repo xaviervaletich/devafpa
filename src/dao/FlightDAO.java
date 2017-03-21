@@ -67,7 +67,6 @@ public class FlightDAO extends DAO<Flight, Long> {
                     pst.setLong(6, flight.getId_pilot());
                 }
                 if (Long.valueOf(flight.getId_copilot()) == 0) {
-
                     pst.setNull(7, Types.BIGINT);
                 } else {
                     pst.setLong(7, flight.getId_copilot());
